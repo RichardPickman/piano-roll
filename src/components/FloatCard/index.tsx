@@ -3,18 +3,17 @@ import { NoteItem } from '../Note';
 import { NoteAttributes } from '../../types';
 
 interface Props {
-    shouldAppear: boolean;
-    rect: { top: number; left: number; width: number } | null;
-    containerRect: DOMRect | null;
-    attributes: NoteAttributes | null;
+    floatData: {
+        shouldAppear: boolean;
+        rect: { top: number; left: number; width: number } | null;
+        containerRect: DOMRect | null;
+        attributes: NoteAttributes | null;
+    };
 }
 
-export const FloatCard = ({
-    shouldAppear,
-    rect,
-    containerRect,
-    attributes,
-}: Props) => {
+export const FloatCard = ({ floatData }: Props) => {
+    const { containerRect, rect, shouldAppear, attributes } = floatData;
+
     if (containerRect && rect) {
         return (
             shouldAppear &&

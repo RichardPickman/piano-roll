@@ -1,13 +1,25 @@
-import { ReactNode } from 'react';
+import { MouseEvent, ReactNode } from 'react';
+import { MotionStyle, m } from 'framer-motion';
+import { cn } from '../../utils';
 
-interface Props {
+type Props = {
+    className: string;
     children: ReactNode;
-}
+    onClick?: (event: MouseEvent<HTMLDivElement>) => void;
+    style?: MotionStyle;
+};
 
-export const Card = ({ children }: Props) => {
+export const Card = ({ children, className, onClick, style }: Props) => {
     return (
-        <div className="flex h-full w-full items-center justify-center rounded border bg-slate-600">
+        <m.div
+            className={cn(
+                'aspect-video w-full rounded border bg-slate-600',
+                className,
+            )}
+            onClick={onClick}
+            style={style}
+        >
             {children}
-        </div>
+        </m.div>
     );
 };
