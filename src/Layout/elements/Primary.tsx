@@ -6,6 +6,13 @@ interface Props {
     children: ReactNode;
 }
 
+/**
+ * Primary box with calculated width of 3/4 or zero, if there is no notes selected.
+ *
+ * @param width number of width in pixels
+ *
+ */
+
 export const Primary = ({ width, children }: Props) => {
     return (
         <m.div

@@ -3,15 +3,22 @@ import { ReactNode } from 'react';
 import { LAYOUT_GAP } from '../../constants';
 
 interface Props {
-    containerWidth: MotionValue<number>;
+    width: MotionValue<number>;
     children: ReactNode;
 }
 
-export const Secondary = ({ containerWidth, children }: Props) => {
+/**
+ * Secondary width, that might be as width as parent in case when there is no notes selected, or will be 1/4 width in case of selected note
+ *
+ * @param width number of width in pixels
+ *
+ */
+
+export const Secondary = ({ width, children }: Props) => {
     return (
         <m.div
             className="relative flex h-full flex-wrap justify-center overflow-auto"
-            style={{ width: containerWidth, gap: LAYOUT_GAP }}
+            style={{ width, gap: LAYOUT_GAP }}
         >
             {children}
         </m.div>
