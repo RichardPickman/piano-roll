@@ -123,11 +123,11 @@ export const getNotes = (sequence: Note[]): NoteAttributes => {
     }
 
     // And margin up and down
-    pitch_min -= 3;
-    pitch_max += 3;
+    pitch_min -= 0;
+    pitch_max += 0;
     pitch_span = pitch_max - pitch_min;
     const height = 1 / pitch_span;
-    const notes = [];
+    const notes: Rect[] = [];
     const emptyLines = drawEmptyPianoRoll(pitch_min, pitch_max);
 
     for (let i = 0; i < sequence.length - 1; i++) {
