@@ -1,6 +1,6 @@
 import { useSpring } from 'framer-motion';
 import { MutableRefObject, useCallback, useEffect, useState } from 'react';
-import { GRID_COLUMNS, LAYOUT_COLUMNS, LAYOUT_GAP } from '../constants';
+import { GRID_COLUMNS, MAIN_WIDTH_COLUMNS, LAYOUT_GAP } from '../constants';
 
 const config = {
     stiffness: 200,
@@ -23,7 +23,7 @@ export const useLayout = (
     const setListLayout = useCallback(() => {
         mainWidth.set(0);
         secondaryWidth.set(containerWidth);
-        cardWidth.set(containerWidth / LAYOUT_COLUMNS - LAYOUT_GAP * 2);
+        cardWidth.set(containerWidth / MAIN_WIDTH_COLUMNS - LAYOUT_GAP * 2);
 
         onRemove();
     }, [cardWidth, containerWidth, mainWidth, onRemove, secondaryWidth]);
@@ -31,7 +31,7 @@ export const useLayout = (
     const setMainLayout = useCallback(() => {
         const onePart = containerWidth / GRID_COLUMNS || 0;
 
-        mainWidth.set(onePart * LAYOUT_COLUMNS);
+        mainWidth.set(onePart * MAIN_WIDTH_COLUMNS);
         secondaryWidth.set(onePart - LAYOUT_GAP);
     }, [containerWidth, mainWidth, secondaryWidth]);
 
