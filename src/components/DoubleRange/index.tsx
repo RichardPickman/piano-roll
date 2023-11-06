@@ -108,7 +108,7 @@ export const DoubleRange = ({ cuts, currentNote, onCutsChange }: Props) => {
             onMouseMove={onMouseMove}
             onMouseUp={onMouseUp}
             className={cn(
-                'absolute h-full w-full bg-transparent',
+                'absolute h-full w-full cursor-pointer bg-transparent',
                 isDrawing && 'cursor-grabbing',
             )}
         >
