@@ -5,7 +5,7 @@ interface Props {
 }
 
 /**
- * NoteItem is component that renders note svg.
+ * NoteItem is component that renders note svg. Takes full width of it's parent.
  *
  * @param attributes NoteAttribute argument for primary content
  */
