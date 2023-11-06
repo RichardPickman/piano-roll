@@ -11,7 +11,7 @@ interface Props {
  */
 
 export const NoteItem = ({ attributes }: Props) => (
-    <div className="relative aspect-video w-full items-center justify-center rounded border bg-slate-600">
+    <div className="relative aspect-video w-full rounded border bg-slate-600">
         <svg
             className="relative h-full w-full bg-slate-400"
             xmlns="http://www.w3.org/2000/svg"
