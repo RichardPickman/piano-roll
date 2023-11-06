@@ -3,4 +3,5 @@ export interface Cut {
     end: number;
     background: string;
     border: string;
+    notesAmount?: number;
 }
