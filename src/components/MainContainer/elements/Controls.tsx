@@ -1,9 +1,9 @@
-import { MouseEvent } from 'react';
-import { variants } from '../variants';
 import { AnimatePresence, m } from 'framer-motion';
+import { ClickEvent } from '../../../types';
+import { variants } from '../variants';
 
 interface ControlsProps {
-    onRemove: (event: MouseEvent<HTMLDivElement>) => void;
+    onRemove: (event: ClickEvent) => void;
     onClear: () => void;
 }
 

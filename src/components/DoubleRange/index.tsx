@@ -1,13 +1,13 @@
 import { m } from 'framer-motion';
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 import { useColors } from '../../hooks/useColors';
 import { usePointers } from '../../hooks/usePointers';
-import { NoteAttributes } from '../../types';
+import { getNotesAmount } from '../../services/notes';
+import { ClickEvent, NoteAttributes } from '../../types';
 import { Cut } from '../../types/doubleRange';
 import { cn, getRandomRGB } from '../../utils';
 import { DrawingBox } from './elements/DrawingBox';
 import { SingleCut } from './elements/SingleCut';
-import { getNotesAmount } from '../../services/notes';
 
 interface Props {
     currentNote: NoteAttributes;
@@ -45,7 +45,7 @@ export const DoubleRange = ({ cuts, currentNote, onCutsChange }: Props) => {
     };
 
     // On the first click we define a starting pointer
-    const onMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    const onMouseDown = (event: ClickEvent) => {
         setDrawing(true);
 
         // On the first click we setting the same positions, because otherwise cut will be displayed from pixel zero to pointer
@@ -56,7 +56,7 @@ export const DoubleRange = ({ cuts, currentNote, onCutsChange }: Props) => {
         setColor(getRandomRGB());
     };
 
-    const onMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    const onMouseMove = (event: ClickEvent) => {
         // if not drawing then just return
         if (!isDrawing) {
             return;
@@ -65,7 +65,7 @@ export const DoubleRange = ({ cuts, currentNote, onCutsChange }: Props) => {
         moveSecondPointer(event);
     };
 
-    const onMouseUp = (event: MouseEvent<HTMLDivElement>) => {
+    const onMouseUp = (event: ClickEvent) => {
         // If width is equals 0, then single click occured
         if (left - right === 0) {
             stopDrawing();
@@ -91,7 +91,7 @@ export const DoubleRange = ({ cuts, currentNote, onCutsChange }: Props) => {
         ]);
     };
 
-    const removeCut = (event: MouseEvent<HTMLDivElement>) => {
+    const removeCut = (event: ClickEvent) => {
         // This function get invoked, when we clicking remove button on cut
         event.stopPropagation();
 

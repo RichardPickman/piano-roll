@@ -1,15 +1,15 @@
-import { MouseEvent, useRef } from 'react';
+import { useRef } from 'react';
 import { Card } from '../components/Card';
 import { FloatCard } from '../components/FloatCard';
+import { MainContainer } from '../components/MainContainer';
 import { NoteItem } from '../components/Note';
 import { LAYOUT_GAP } from '../constants';
 import { useFloatValues } from '../hooks/useFloatValues';
 import { useLayout } from '../hooks/useLayout';
-import { NoteAttributes } from '../types';
+import { ClickEvent, NoteAttributes } from '../types';
 import { cn } from '../utils';
 import { Primary } from './elements/Primary';
 import { Secondary } from './elements/Secondary';
-import { MainContainer } from '../components/MainContainer';
 
 interface Props {
     currentNote: NoteAttributes | null;
@@ -30,16 +30,9 @@ interface Props {
 export const Layout = ({ currentNote, notes, onClick, onRemove }: Props) => {
     const container = useRef<HTMLDivElement | null>(null);
     const { isActive, rect, renderFloatCard } = useFloatValues();
-    const { mainWidth, secondaryWidth, cardWidth, containerRect } = useLayout(
-        container,
-        !!currentNote,
-        onRemove,
-    );
+    const layout = useLayout(container, !!currentNote, onRemove);
 
-    const handleCardClick = (
-        event: MouseEvent<HTMLDivElement>,
-        item: NoteAttributes,
-    ) => {
+    const handleCardClick = (event: ClickEvent, item: NoteAttributes) => {
         renderFloatCard(event.currentTarget.getBoundingClientRect());
         onClick(item);
     };
@@ -47,7 +40,7 @@ export const Layout = ({ currentNote, notes, onClick, onRemove }: Props) => {
     const floatData = {
         shouldAppear: isActive,
         rect,
-        containerRect,
+        containerRect: layout.containerRect,
         attributes: currentNote,
     };
 
@@ -67,7 +60,7 @@ export const Layout = ({ currentNote, notes, onClick, onRemove }: Props) => {
                 )}
                 style={{ gap: LAYOUT_GAP }}
             >
-                <Primary key={currentNote?.id} width={mainWidth}>
+                <Primary key={currentNote?.id} width={layout.mainWidth}>
                     {currentNote && (
                         <MainContainer
                             currentNote={currentNote}
@@ -75,7 +68,7 @@ export const Layout = ({ currentNote, notes, onClick, onRemove }: Props) => {
                         />
                     )}
                 </Primary>
-                <Secondary width={secondaryWidth}>
+                <Secondary width={layout.secondaryWidth}>
                     {notes &&
                         notes.map((item, index) => (
                             <Card
@@ -83,7 +76,7 @@ export const Layout = ({ currentNote, notes, onClick, onRemove }: Props) => {
                                 className="h-fit cursor-pointer bg-slate-600"
                                 data-item={item}
                                 onClick={event => handleCardClick(event, item)}
-                                style={{ width: cardWidth }}
+                                style={{ width: layout.cardWidth }}
                             >
                                 <NoteItem attributes={notes[index]} />
                             </Card>

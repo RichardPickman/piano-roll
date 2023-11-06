@@ -1,9 +1,9 @@
-import { MouseEvent } from 'react';
+import { ClickEvent } from '../../../types';
 import { Cut } from '../../../types/doubleRange';
 
 interface Props {
     cut: Cut;
-    onRemove: (event: MouseEvent<HTMLDivElement>) => void;
+    onRemove: (event: ClickEvent) => void;
 }
 
 /**

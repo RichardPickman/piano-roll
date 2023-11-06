@@ -1,4 +1,5 @@
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
+import { ClickEvent } from '../types';
 import { getPointerPosition } from '../utils';
 
 /**
@@ -10,7 +11,7 @@ export const usePointers = () => {
     const [firstPointer, setFirstPointer] = useState(0);
     const [secondPointer, setSecondPointer] = useState(0);
 
-    const moveFirstPointer = (event: MouseEvent<HTMLDivElement>) => {
+    const moveFirstPointer = (event: ClickEvent) => {
         const pointer = getPointerPosition(event);
 
         // On the first click we setting the same positions, because otherwise cut will be displayed from pixel zero to pointer
@@ -18,7 +19,7 @@ export const usePointers = () => {
         setSecondPointer(pointer);
     };
 
-    const moveSecondPointer = (event: MouseEvent<HTMLDivElement>) => {
+    const moveSecondPointer = (event: ClickEvent) => {
         const pointer = getPointerPosition(event);
 
         setSecondPointer(pointer);

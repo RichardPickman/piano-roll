@@ -1,11 +1,12 @@
 import { MotionProps, m } from 'framer-motion';
-import { MouseEvent, ReactNode } from 'react';
+import { ReactNode } from 'react';
+import { ClickEvent } from '../../types';
 import { cn } from '../../utils';
 
 type Props = {
     children: ReactNode;
     className?: string;
-    onClick?: (event: MouseEvent<HTMLDivElement>) => void;
+    onClick?: (event: ClickEvent) => void;
 } & MotionProps;
 
 export const Card = ({ children, className, onClick, ...props }: Props) => {

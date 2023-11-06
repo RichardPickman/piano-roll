@@ -1,4 +1,5 @@
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
+import { ClickEvent } from '../types';
 import { getPointerPosition } from '../utils';
 
 /**
@@ -10,7 +11,7 @@ import { getPointerPosition } from '../utils';
 export const useCaretValue = () => {
     const [caret, setCaret] = useState<number | null>(null);
 
-    const moveCaret = (event: MouseEvent<HTMLDivElement>) => {
+    const moveCaret = (event: ClickEvent) => {
         const pointer = getPointerPosition(event);
 
         setCaret(pointer);

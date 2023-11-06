@@ -1,18 +1,17 @@
-import { MouseEvent } from 'react';
-import { NoteAttributes } from '../../../types';
+import { AnimatePresence } from 'framer-motion';
+import { ClickEvent, NoteAttributes } from '../../../types';
 import { Cut } from '../../../types/doubleRange';
 import { Card } from '../../Card';
 import { Caret } from '../../Caret';
 import { DoubleRange } from '../../DoubleRange';
 import { NoteItem } from '../../Note';
 import { variants } from '../variants';
-import { AnimatePresence } from 'framer-motion';
 
 interface SelectedNoteProps {
     currentNote: NoteAttributes;
     cuts: Cut[];
     caret: number | null;
-    moveCaret: (event: MouseEvent<HTMLDivElement>) => void;
+    moveCaret: (event: ClickEvent) => void;
     onCutsChange: (cuts: Cut[]) => void;
 }
 

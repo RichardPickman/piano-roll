@@ -1,3 +1,5 @@
+import { MouseEvent } from 'react';
+
 export interface Note {
     start: number;
     end: number;
@@ -38,3 +40,5 @@ export type NoteAttributes = {
     blanks: Rect[];
     lines: Line[];
 };
+
+export type ClickEvent = MouseEvent<HTMLDivElement>;

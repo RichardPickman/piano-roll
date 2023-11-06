@@ -1,10 +1,10 @@
+import { ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { clsx, ClassValue } from 'clsx';
-import { MouseEvent } from 'react';
+import { ClickEvent } from '../types';
 
 export const cn = (...args: ClassValue[]) => twMerge(clsx(args));
 
-export const getPointerPosition = (event: MouseEvent<HTMLDivElement>) =>
+export const getPointerPosition = (event: ClickEvent) =>
     event.clientX - event.currentTarget.getBoundingClientRect().left;
 
 export const getRandomRGB = () => ({
