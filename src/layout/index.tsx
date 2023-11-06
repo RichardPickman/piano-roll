@@ -74,7 +74,6 @@ export const Layout = ({ currentNote, notes, onClick, onRemove }: Props) => {
                             <Card
                                 key={item.id}
                                 className="h-fit cursor-pointer bg-slate-600"
-                                data-item={item}
                                 onClick={event => handleCardClick(event, item)}
                                 style={{ width: layout.cardWidth }}
                             >
