@@ -30,8 +30,8 @@ export const SingleCut = ({ cut, onRemove }: Props) => {
                 borderRight: `1px solid ${border}`,
             }}
         >
-            <div className="absolute bottom-0 w-full border bg-slate-600 px-2 py-1">
-                {notesAmount} notes selected!
+            <div className="absolute bottom-0 w-full border bg-slate-300 px-1 py-1 text-black">
+                {notesAmount} notes
             </div>
             <div
                 onMouseDown={onRemove}
