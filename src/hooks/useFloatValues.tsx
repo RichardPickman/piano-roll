@@ -7,6 +7,12 @@ const initialCard = {
     width: 0,
 };
 
+/**
+ * Hook handles float card states and exposes callback to initiate float card animation
+ *
+ * @returns isActive and rect values as well as executor function
+ */
+
 export const useFloatValues = () => {
     const [isActive, setActive] = useState(false);
     const [rect, setRect] = useState(initialCard);

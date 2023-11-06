@@ -8,6 +8,13 @@ const config = {
     mass: 0.2,
 };
 
+/**
+ * Hook is handling the width of primary and secondary columns and exposes callbacks to set desired layout: List or Main.
+ * @param container ref object of container. Needs to get DOMRect of a container
+ * @param isMain boolean value, need to recalculate data and preserve layout
+ * @param onRemove callback needed for setting List layout
+ */
+
 export const useLayout = (
     container: MutableRefObject<HTMLDivElement | null>,
     isMain: boolean,
@@ -35,6 +42,7 @@ export const useLayout = (
         secondaryWidth.set(onePart - LAYOUT_GAP);
     }, [containerWidth, mainWidth, secondaryWidth]);
 
+    // Update container rect
     const updateContainer = useCallback(() => {
         if (container.current) {
             const dimensions = container.current.getBoundingClientRect();
@@ -45,10 +53,12 @@ export const useLayout = (
         }
     }, [container, isMain, setListLayout, setMainLayout]);
 
+    // Update container when container mounts
     useEffect(() => {
         updateContainer();
     }, [container, updateContainer]);
 
+    // Update container on window resize
     useEffect(() => {
         window.addEventListener('resize', updateContainer);
 

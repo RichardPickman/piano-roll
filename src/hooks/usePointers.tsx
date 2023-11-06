@@ -1,6 +1,11 @@
 import { MouseEvent, useState } from 'react';
 import { getPointerPosition } from '../utils';
 
+/**
+ * Hook handles first and second pointers, using DOMRect of clicked element.
+ * @returns firstPointer and secondPointer positions as well as their handling callbacks
+ */
+
 export const usePointers = () => {
     const [firstPointer, setFirstPointer] = useState(0);
     const [secondPointer, setSecondPointer] = useState(0);
