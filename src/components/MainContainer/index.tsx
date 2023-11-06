@@ -1,10 +1,9 @@
-import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { useCaretValue } from '../../hooks/useCaretValue';
-import { Cut } from '../../types/doubleRange';
 import { NoteAttributes } from '../../types';
-import { SelectedNote } from './elements/SelectedNote';
+import { Cut } from '../../types/doubleRange';
 import { Controls } from './elements/Controls';
+import { SelectedNote } from './elements/SelectedNote';
 
 interface Props {
     currentNote: NoteAttributes;
@@ -23,7 +22,7 @@ export const MainContainer = ({ currentNote, onRemove }: Props) => {
     const [cuts, setCuts] = useState<Cut[]>([]);
 
     return (
-        <AnimatePresence>
+        <div className="flex flex-col gap-4">
             <SelectedNote
                 cuts={cuts}
                 caret={caret}
@@ -32,6 +31,6 @@ export const MainContainer = ({ currentNote, onRemove }: Props) => {
                 onCutsChange={value => setCuts(value)}
             />
             <Controls onRemove={onRemove} onClear={() => setCuts([])} />
-        </AnimatePresence>
+        </div>
     );
 };

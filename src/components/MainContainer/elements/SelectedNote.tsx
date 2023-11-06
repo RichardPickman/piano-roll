@@ -6,6 +6,7 @@ import { Caret } from '../../Caret';
 import { DoubleRange } from '../../DoubleRange';
 import { NoteItem } from '../../Note';
 import { variants } from '../constants';
+import { AnimatePresence } from 'framer-motion';
 
 interface SelectedNoteProps {
     currentNote: NoteAttributes;
@@ -33,15 +34,17 @@ export const SelectedNote = ({
     onCutsChange,
 }: SelectedNoteProps) => {
     return (
-        <Card className="relative" {...variants}>
-            <NoteItem attributes={currentNote} />
-            <div
-                onClick={moveCaret}
-                className="absolute h-full w-full bg-transparent"
-            >
-                <DoubleRange cuts={cuts} onCutsChange={onCutsChange} />
-                <Caret caret={caret} />
-            </div>
-        </Card>
+        <AnimatePresence>
+            <Card key="selected-note" className="relative" {...variants}>
+                <NoteItem attributes={currentNote} />
+                <div
+                    onClick={moveCaret}
+                    className="absolute h-full w-full bg-transparent"
+                >
+                    <DoubleRange cuts={cuts} onCutsChange={onCutsChange} />
+                    <Caret caret={caret} />
+                </div>
+            </Card>
+        </AnimatePresence>
     );
 };
