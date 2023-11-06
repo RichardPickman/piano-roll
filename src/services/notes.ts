@@ -175,12 +175,12 @@ export const getNotesAmount = (
     right: number,
 ) => {
     const onePercent = rect.width / 100;
-    const minPointer = left / onePercent;
-    const maxPointer = right / onePercent;
+    const leftPointer = left / onePercent;
+    const rightPointer = right / onePercent;
 
     const oneNotePercent = 2 / 100;
-    const start = oneNotePercent * minPointer;
-    const end = oneNotePercent * maxPointer;
+    const start = oneNotePercent * leftPointer;
+    const end = oneNotePercent * rightPointer;
 
     let amount = 0;
 
