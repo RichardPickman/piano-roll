@@ -151,7 +151,8 @@ export const getNotes = (sequence: Note[]): NoteAttributes => {
 
     return {
         id: Math.random(),
-        rectangulars: [...notes, ...emptyLines.rectangulars],
+        rectangulars: notes,
+        blanks: emptyLines.rectangulars,
         lines: emptyLines.lines,
     };
 };

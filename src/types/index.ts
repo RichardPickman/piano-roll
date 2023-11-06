@@ -35,5 +35,6 @@ export type Line = {
 export type NoteAttributes = {
     id: number;
     rectangulars: Rect[];
+    blanks: Rect[];
     lines: Line[];
 };
