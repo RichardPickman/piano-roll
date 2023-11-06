@@ -8,7 +8,7 @@ interface Props {
 }
 
 /**
- * Secondary width, that might be as width as parent in case when there is no notes selected, or will be 1/4 width in case of selected note
+ * Secondary column, that might be as width as parent in case when there is no notes selected, or will be 1/4 width in case note is selected
  *
  * @param width number of width in pixels
  *

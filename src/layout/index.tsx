@@ -1,19 +1,15 @@
-import { AnimatePresence, m } from 'framer-motion';
-import { MouseEvent, useRef, useState } from 'react';
-import { DoubleRange } from '../components/DoubleRange';
+import { MouseEvent, useRef } from 'react';
+import { Card } from '../components/Card';
 import { FloatCard } from '../components/FloatCard';
 import { NoteItem } from '../components/Note';
-import { DELAY, LAYOUT_GAP } from '../constants';
-import { useCaretValue } from '../hooks/useCaretValue';
+import { LAYOUT_GAP } from '../constants';
 import { useFloatValues } from '../hooks/useFloatValues';
 import { useLayout } from '../hooks/useLayout';
 import { NoteAttributes } from '../types';
-import { Cut } from '../types/doubleRange';
 import { cn } from '../utils';
-import { Secondary } from './elements/Secondary';
 import { Primary } from './elements/Primary';
-import { Caret } from '../components/Caret';
-import { Card } from '../components/Card';
+import { Secondary } from './elements/Secondary';
+import { MainContainer } from '../components/MainContainer';
 
 interface Props {
     currentNote: NoteAttributes | null;
@@ -22,76 +18,18 @@ interface Props {
     onRemove: () => void;
 }
 
-const variants = {
-    initial: { display: 'none' },
-    animate: {
-        display: 'flex',
-        transition: { delay: DELAY },
-    },
-    exit: {
-        opacity: 0,
-    },
-};
-
-interface ControlsProps {
-    onRemove: (event: MouseEvent<HTMLDivElement>) => void;
-    onClear: () => void;
-}
-
-const MainControls = ({ onRemove, onClear }: ControlsProps) => (
-    <m.div {...variants} className="flex gap-4">
-        <div
-            className="w-fit cursor-pointer rounded border bg-slate-600 px-4 py-2"
-            onClick={onRemove}
-        >
-            Close
-        </div>
-        <div
-            className="w-fit cursor-pointer rounded border bg-slate-600 px-4 py-2"
-            onClick={onClear}
-        >
-            Clear pallette!
-        </div>
-    </m.div>
-);
-
-interface MainContainerProps {
-    currentNote: NoteAttributes;
-    onRemove: () => void;
-}
-
-const MainContainer = ({ currentNote, onRemove }: MainContainerProps) => {
-    const { caret, moveCaret } = useCaretValue();
-    const [cuts, setCuts] = useState<Cut[]>([]);
-
-    return (
-        <AnimatePresence>
-            <m.div
-                key="notes"
-                className="relative aspect-video w-full items-center justify-center rounded border"
-                {...variants}
-            >
-                <NoteItem attributes={currentNote} />
-                <div
-                    onClick={moveCaret}
-                    className="absolute h-full w-full bg-transparent"
-                >
-                    <DoubleRange
-                        cuts={cuts}
-                        onCutsChange={cuts => setCuts(cuts)}
-                    />
-                    <Caret caret={caret} />
-                </div>
-            </m.div>
-            <MainControls onRemove={onRemove} onClear={() => setCuts([])} />
-        </AnimatePresence>
-    );
-};
+/**
+ * Layout component defined to control width of 2 columns. Primary column contains current note, secondary column is for listing all cards
+ *
+ * @param currentNote NoteAttribute argument for primary content
+ * @param notes NoteAttribute array argument for cards render
+ * @param onClick callback for choosing current note
+ * @param onRemove callback for removing current note
+ */
 
 export const Layout = ({ currentNote, notes, onClick, onRemove }: Props) => {
     const container = useRef<HTMLDivElement | null>(null);
     const { isActive, rect, renderFloatCard } = useFloatValues();
-
     const { mainWidth, secondaryWidth, cardWidth, containerRect } = useLayout(
         container,
         !!currentNote,

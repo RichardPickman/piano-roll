@@ -4,6 +4,12 @@ interface Props {
     attributes: NoteAttributes;
 }
 
+/**
+ * NoteItem is component that renders note svg.
+ *
+ * @param attributes NoteAttribute argument for primary content
+ */
+
 export const NoteItem = ({ attributes }: Props) => (
     <div className="relative aspect-video w-full items-center justify-center rounded border bg-slate-600">
         <svg

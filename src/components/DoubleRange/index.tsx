@@ -12,6 +12,14 @@ interface Props {
     onCutsChange: (cuts: Cut[]) => void;
 }
 
+/**
+ * Double range is component for selecting range. That component gets flexbox values of its parent and creates an absolute position box to be able to get selection range.
+ *
+ * @param cuts Array of range cuts
+ * @param onCutsChange callback to change range array
+ *
+ */
+
 export const DoubleRange = ({ cuts, onCutsChange }: Props) => {
     const [isDrawing, setDrawing] = useState(false);
     const { background, border, setColor, removeColor } = useColors();

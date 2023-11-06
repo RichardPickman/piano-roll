@@ -1,14 +1,18 @@
 import { MouseEvent } from 'react';
+import { Cut } from '../../../types/doubleRange';
 
 interface Props {
-    cut: {
-        start: number;
-        end: number;
-        background: string;
-        border: string;
-    };
+    cut: Cut;
     onRemove: (event: MouseEvent<HTMLDivElement>) => void;
 }
+
+/**
+ * Single Cut is a component that being rendered with selected values.
+ *
+ * @param cut values for single cut, such as { start, end, background, border }
+ * @param onRemove callback to remove itself
+ *
+ */
 
 export const SingleCut = ({ cut, onRemove }: Props) => {
     const { start, end, background, border } = cut;

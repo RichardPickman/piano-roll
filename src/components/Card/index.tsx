@@ -1,15 +1,14 @@
+import { MotionProps, m } from 'framer-motion';
 import { MouseEvent, ReactNode } from 'react';
-import { MotionStyle, m } from 'framer-motion';
 import { cn } from '../../utils';
 
 type Props = {
-    className: string;
     children: ReactNode;
+    className?: string;
     onClick?: (event: MouseEvent<HTMLDivElement>) => void;
-    style?: MotionStyle;
-};
+} & MotionProps;
 
-export const Card = ({ children, className, onClick, style }: Props) => {
+export const Card = ({ children, className, onClick, ...props }: Props) => {
     return (
         <m.div
             className={cn(
@@ -17,7 +16,7 @@ export const Card = ({ children, className, onClick, style }: Props) => {
                 className,
             )}
             onClick={onClick}
-            style={style}
+            {...props}
         >
             {children}
         </m.div>

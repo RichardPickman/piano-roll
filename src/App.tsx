@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
-import { Layout } from './Layout';
+import { Layout } from './layout';
 import { NoteAttributes } from './types';
 import { getNotes, getPianoNotes } from './services/notes';
 
