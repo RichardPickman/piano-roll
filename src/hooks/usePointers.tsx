@@ -19,7 +19,6 @@ export const usePointers = () => {
     };
 
     const moveSecondPointer = (event: MouseEvent<HTMLDivElement>) => {
-        // Otherwise its drawing process, then we need to listen to every mouse event
         const pointer = getPointerPosition(event);
 
         setSecondPointer(pointer);
