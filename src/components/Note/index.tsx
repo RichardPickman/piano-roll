@@ -18,10 +18,13 @@ export const NoteItem = ({ attributes }: Props) => (
             viewBox="0 0 2 1"
         >
             {attributes.rectangulars.map(item => (
-                <rect {...item} />
+                <rect key={item.x + item.y + item.width} {...item} />
+            ))}
+            {attributes.blanks.map(item => (
+                <rect key={item.x + item.y + item.width} {...item} />
             ))}
             {attributes.lines.map(item => (
-                <line {...item} />
+                <line key={item.x1 + item.x2 + item.y1} {...item} />
             ))}
         </svg>
     </div>
