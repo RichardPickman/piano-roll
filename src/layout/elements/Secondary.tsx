@@ -17,7 +17,7 @@ interface Props {
 export const Secondary = ({ width, children }: Props) => {
     return (
         <m.div
-            className="relative flex h-full flex-wrap justify-center overflow-auto"
+            className="relative flex flex-wrap justify-center overflow-auto"
             style={{ width, gap: LAYOUT_GAP }}
         >
             {children}

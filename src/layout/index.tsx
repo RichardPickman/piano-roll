@@ -80,7 +80,7 @@ export const Layout = ({ currentNote, notes, onClick, onRemove }: Props) => {
                         notes.map((item, index) => (
                             <Card
                                 key={item.id}
-                                className="cursor-pointer bg-slate-600"
+                                className="h-fit cursor-pointer bg-slate-600"
                                 data-item={item}
                                 onClick={event => handleCardClick(event, item)}
                                 style={{ width: cardWidth }}
