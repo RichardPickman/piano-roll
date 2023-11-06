@@ -156,3 +156,39 @@ export const getNotes = (sequence: Note[]): NoteAttributes => {
         lines: emptyLines.lines,
     };
 };
+
+/**
+ * Function is getting the DOMRect to calculate current selection percentage. Basically it gets percentage of first and second pointers, then compares them with NoteAttributes X and Width - X.
+ *
+ * @param currentNote NoteAttributes of notes itself
+ * @param rect DOMRect of current selection
+ * @param left number of the first pointer
+ * @param right number of the second pointer
+ *
+ * @returns amount of notes within selection
+ *
+ */
+export const getNotesAmount = (
+    currentNote: NoteAttributes,
+    rect: DOMRect,
+    left: number,
+    right: number,
+) => {
+    const onePercent = rect.width / 100;
+    const minPointer = left / onePercent;
+    const maxPointer = right / onePercent;
+
+    const oneNotePercent = 2 / 100;
+    const start = oneNotePercent * minPointer;
+    const end = oneNotePercent * maxPointer;
+
+    let amount = 0;
+
+    currentNote.rectangulars.forEach(item => {
+        if (item.x > start && item.x + item.width < end) {
+            amount++;
+        }
+    });
+
+    return amount;
+};

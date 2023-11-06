@@ -2,12 +2,15 @@ import { m } from 'framer-motion';
 import { MouseEvent, useState } from 'react';
 import { useColors } from '../../hooks/useColors';
 import { usePointers } from '../../hooks/usePointers';
+import { NoteAttributes } from '../../types';
 import { Cut } from '../../types/doubleRange';
 import { cn, getRandomRGB } from '../../utils';
 import { DrawingBox } from './elements/DrawingBox';
 import { SingleCut } from './elements/SingleCut';
+import { getNotesAmount } from '../../services/notes';
 
 interface Props {
+    currentNote: NoteAttributes;
     cuts: Cut[];
     onCutsChange: (cuts: Cut[]) => void;
 }
@@ -20,7 +23,7 @@ interface Props {
  *
  */
 
-export const DoubleRange = ({ cuts, onCutsChange }: Props) => {
+export const DoubleRange = ({ cuts, currentNote, onCutsChange }: Props) => {
     const [isDrawing, setDrawing] = useState(false);
     const { background, border, setColor, removeColor } = useColors();
     const {
@@ -62,7 +65,7 @@ export const DoubleRange = ({ cuts, onCutsChange }: Props) => {
         moveSecondPointer(event);
     };
 
-    const onMouseUp = () => {
+    const onMouseUp = (event: MouseEvent<HTMLDivElement>) => {
         // If width is equals 0, then single click occured
         if (left - right === 0) {
             stopDrawing();
@@ -73,6 +76,8 @@ export const DoubleRange = ({ cuts, onCutsChange }: Props) => {
         // Stop drawing process
         stopDrawing();
 
+        const rect = event.currentTarget.getBoundingClientRect();
+
         // Push new cut to cuts array
         onCutsChange([
             ...cuts,
@@ -81,6 +86,7 @@ export const DoubleRange = ({ cuts, onCutsChange }: Props) => {
                 end: right,
                 background,
                 border,
+                notesAmount: getNotesAmount(currentNote, rect, left, right),
             },
         ]);
     };

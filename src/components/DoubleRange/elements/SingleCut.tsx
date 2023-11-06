@@ -15,7 +15,7 @@ interface Props {
  */
 
 export const SingleCut = ({ cut, onRemove }: Props) => {
-    const { start, end, background, border } = cut;
+    const { start, end, background, border, notesAmount } = cut;
 
     return (
         <div
@@ -30,6 +30,9 @@ export const SingleCut = ({ cut, onRemove }: Props) => {
                 borderRight: `1px solid ${border}`,
             }}
         >
+            <div className="absolute bottom-0 w-full border bg-slate-600 px-2 py-1">
+                {notesAmount} notes selected!
+            </div>
             <div
                 onMouseDown={onRemove}
                 data-unique-id={background}

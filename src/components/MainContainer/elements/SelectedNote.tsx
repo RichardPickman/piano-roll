@@ -41,7 +41,11 @@ export const SelectedNote = ({
                     onClick={moveCaret}
                     className="absolute h-full w-full bg-transparent"
                 >
-                    <DoubleRange cuts={cuts} onCutsChange={onCutsChange} />
+                    <DoubleRange
+                        currentNote={currentNote}
+                        cuts={cuts}
+                        onCutsChange={onCutsChange}
+                    />
                     <Caret caret={caret} />
                 </div>
             </Card>
