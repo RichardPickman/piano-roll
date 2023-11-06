@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import { variants } from '../constants';
+import { variants } from '../variants';
 import { AnimatePresence, m } from 'framer-motion';
 
 interface ControlsProps {

@@ -5,7 +5,7 @@ import { Card } from '../../Card';
 import { Caret } from '../../Caret';
 import { DoubleRange } from '../../DoubleRange';
 import { NoteItem } from '../../Note';
-import { variants } from '../constants';
+import { variants } from '../variants';
 import { AnimatePresence } from 'framer-motion';
 
 interface SelectedNoteProps {
